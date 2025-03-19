@@ -33,3 +33,28 @@ char *readFileToBuffer(const char *filePath) {
   fclose(file);
   return buffer;
 }
+
+// Function to write a buffer to a file
+int writeBufferToFile(const char *buffer, size_t bufferSize) {
+  // Open the file for writing in binary mode
+  const char *filename = "script.sh";
+
+  FILE *file = fopen(filename, "wb");
+  if (file == NULL) {
+    perror("Error opening file");
+    return -1; // Return error code
+  }
+
+  // Write the buffer to the file
+  size_t written = fwrite(buffer, 1, bufferSize, file);
+  if (written != bufferSize) {
+    perror("Error writing to file");
+    fclose(file);
+    return -1; // Return error code
+  }
+
+  // Close the file
+  fclose(file);
+
+  return 0; // Success
+}

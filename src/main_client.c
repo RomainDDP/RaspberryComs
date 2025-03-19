@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   if (argc != 4) {
     printf("Default parameters in use, if you wish to configure :\n");
     printf("%s <SERVER IP> <SERVER PORT> <FILE PATH>\n", argv[0]);
-    IP = "192.168.";
+    IP = "192.168.1.1";
     PORT = 5000;
     FILE_PATH = "script.sh";
 

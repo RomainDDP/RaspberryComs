@@ -12,7 +12,7 @@
  * @param data Data which will be sent to the server.
  * @return Returns 0 on success, or a negative value on error.
  */
-int sendDataOverTCP(const char *serverIP, int serverPort, const char *data) {
+int sendDataToServer(const char *serverIP, int serverPort, const char *data) {
   int sock = socket(AF_INET, SOCK_STREAM, 0);
   if (sock < 0) {
     perror("Socket creation failed");
