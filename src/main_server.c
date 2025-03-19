@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include "config.h"
+#include "file_utils.h"
 
 int main(int argc, char *argv[]) {
 
@@ -23,14 +24,6 @@ int main(int argc, char *argv[]) {
     IP = argv[1];
     PORT = atoi(argv[2]);
   }
-
-  // Extract port from command-line arguments
-  int serverPort = atoi(argv[1]);
-  if (serverPort <= 0) {
-    fprintf(stderr, "Invalid port number: %s\n", argv[1]);
-    return EXIT_FAILURE;
-  }
-
   // Initialize TCP parameters
   config serverConfig;
   serverConfig.serverIP = IP;
@@ -45,6 +38,11 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "Failed to start TCP server\n");
     return EXIT_FAILURE;
   }
+
+  if (writeBufferToFile(buffer, serverConfig.bufferSize) < 0) {
+    fprintf(stderr, "Failed to write into the file\n");
+    return EXIT_FAILURE;
+  };
 
   printf("Server stopped\n");
   return EXIT_SUCCESS;
